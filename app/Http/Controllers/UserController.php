@@ -60,7 +60,27 @@ class UserController extends Controller
     }
 
     public function registerAdmin(Request $request){
-        
+        $request->validate([
+            'name' => 'string',
+            'email' => 'string',
+            'password' => 'string',
+        ]); 
+        $request['password'] = hash('sha512', $request['password']);
+        foreach($request as $key => $value ){
+            if($this->isEmptyUser($key, $value)){
+
+                if($key = 'name'){
+                    return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'name']);
+                }
+
+                return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'data']);
+            }
+        }
+        $user = new User;
+        $user[] = $request;
+        $user->role()->attach(1);
+        $user->save();
+        return response()->json(['status_code' => 1, 'status' => true]);
     }
 
     public function showTableShare(){
