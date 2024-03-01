@@ -1,5 +1,6 @@
-function Button( {children} ){
-    function handleClick(){
+function Button({children}  ){
+    function handleClick(e){
+        e.preventDefault()
         console.log('click')
     }
     return(

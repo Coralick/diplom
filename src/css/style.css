@@ -10,6 +10,7 @@
     font-size: 128px;
     color: #ffffff;
 }
+
 .form{
     width: 1500px;
     height: max-content;
@@ -17,18 +18,21 @@
     background-color: #ffffff;
     margin: 0 auto;
 }
+
 .input{
     border: none;
     background-color: white;
     font-size: 64px;
     color: black;
 }
+
 .button{
     background-color: #609AB9;
     font-size: 48px;
     padding: 20px 40px 20px 40px;
     color: #ffffff;
 }
+
 .link{
     color: #ffffff;
     font-size: 64px;
