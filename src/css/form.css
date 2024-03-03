@@ -1,0 +1,236 @@
+.body{
+    background-image: url(../media/fonForm.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.title{
+    font-size: 128px;
+    color: #ffffff;
+    text-align: center;
+}
+#root{
+    background-color: #AFCDDE;
+    min-height: 100vh;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+}
+
+.form{
+    max-width: 1500px;
+    background-color: #ffffff;
+    margin: 0 auto;
+    margin-top: 50px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.pass{
+    height: max-content;
+    width: 100%;    
+    position: relative;
+    background-color: #ffffff;
+    margin: 0 auto;
+    text-align: center;
+}
+.formeye{
+    transform: scale(3.5, 3.5);
+    position: absolute;
+    margin-left: 1150px; 
+    padding-bottom: 35px;
+    color: #3D5A76;
+}
+.input{
+    background-color: white;
+    border: 0;
+    font-size: 64px;
+    color: black;
+    margin-top: 35px;
+    outline:none;
+    border-bottom: 2px solid black;
+}
+form > .input:first-child{
+    margin-top: 70px;
+}
+/* .hr{
+    height: 4px;
+    width: 800px;
+    background-color: black;
+    margin-left: 357px;
+} */
+/* .hrb{
+    height: 4px;
+    width: 639;
+    background-color: rgb(255, 255, 255);
+    margin-left: 640px;
+} */
+
+.b{
+    text-align: center;
+    margin-top: 29px;
+    background: none;
+}
+
+.b.entrance{
+    margin-top: 139px;
+}
+.msg {
+    visibility: hidden;
+    font-size: 20px;
+    color: red;
+    transition: .4s ease;
+}
+
+.msg.active{
+    visibility: visible;
+    transition: .4s ease;
+}
+.input.active{
+    border-bottom: 1px solid red;
+}
+
+.button{
+    background-color: #609AB9;
+    font-size: 48px;
+    padding: 20px 40px 20px 40px;
+    color: #ffffff;
+    margin-bottom: 70px;
+    margin-top: 57px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: .4s ease;
+}
+
+.button:hover{
+    background-color: #4a778f;
+    transition: .4s ease;
+}
+
+.link{
+    color: #ffffff;
+    font-size: 64px;
+    /* margin-left: 640px; */
+    margin: 0 auto;
+    margin-top: 65px;
+    text-decoration: underline;
+    text-underline-offset: 15px;
+}
+
+header{
+    width: 100%;
+    padding-left:40px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+.profile_container{
+    display: flex;
+    column-gap: 12.5px;
+    padding: 17px 20px;
+    background-color: #273645;
+    border-bottom-left-radius: 25px;
+    align-items: center;
+    cursor: pointer;
+    transition: .4s ease;
+}
+
+.profile_container:hover{
+    background-color: #364a5f;
+    transition: .4s ease;
+}
+
+.profile_name{
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.main_block{
+    display: flex;
+    justify-content: space-between;
+}
+
+.table_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+    width: 75%;
+    gap: 25px;
+    margin-left: 25px;
+    overflow-y: auto;
+    max-height: 790px;
+}
+
+.table_card{
+    width: 100%;
+    max-width: 440px;
+    padding: 22px;
+    border-radius: 15px  15px 20px 20px;
+    border-top: 18px solid #ED4E4E;
+    background-color: #E5F6FF;
+    min-height: 350px;
+    cursor: pointer;
+    transition: .4s ease;
+}
+
+.table_card:hover{
+    background-color: rgb(242, 250, 255);
+    transform: scale(1.005);
+    transition: .4s ease;
+}
+
+.table_card hr {
+    margin: 20px 0;
+    border: 1.5px solid #609AB9;
+}
+.table_title{
+    font-size: 20px;
+    text-align: center;
+    font-weight: 200;
+}
+
+.desc_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80%;
+}
+
+.table_deadline{
+    text-align: end;
+}
+
+.filter_container{
+    display: flex;
+    padding: 20px 30px ;
+    background-color: #fff;
+    border: 1px solid #3D5A76;
+    max-height: 240px;
+}
+
+.filter_container  label{
+    cursor: pointer;
+}
+
+.checkbox_filter, 
+.radio_filter{
+    display: flex;
+    flex-direction: column;
+    row-gap: 35px;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.radio_filter{
+    padding-right: 25px;
+    border-right: 1px solid #273645;
+}
+
+.checkbox_filter{
+    margin-left: 25px;
+}
+
+.checkbox_box, 
+.radio_box{
+    cursor: pointer;
+    margin-right: 15px;
+}
