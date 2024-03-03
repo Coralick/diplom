@@ -14,11 +14,16 @@ class UserController extends Controller
         $data = User::all();
         return response()->json($data);
     }
+
     public function isEmptyUser($key, $value){
-        return empty(User::where($key, $value)->get());
+
+        if(isset(User::where($key, $value)->get()[0])){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-
-
 
     public function registerUser(Request $request){
         $data = request()->validate([
@@ -26,17 +31,20 @@ class UserController extends Controller
             'email' => 'string',
             'password' => 'string',
         ]);
-
+        
         $data['password'] = hash('sha512', $data['password']);
-
+        
         foreach($data as $key => $value ){
             if($this->isEmptyUser($key, $value)){
-                return response()->json($this->isEmptyUser($key, $value));
+
                 if($key == 'name'){
                     return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'name']);
                 }
 
-                return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'data']);
+                else{
+                    return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'data']);
+                }
+
             }
         }
 
@@ -46,9 +54,9 @@ class UserController extends Controller
         $user['password'] = $data['password'];
         $user->save();
         $user->role()->attach(2);
-
         return response()->json(['status_code' => 1, 'status' => true, 'msg' => 'success']);
     }
+
     public function authUser(Request $request){
         $data = request()->validate([
             'email' => 'string',
@@ -56,15 +64,14 @@ class UserController extends Controller
         ]); 
 
         $data['password'] = hash('sha512', $data['password']);
-
-        foreach($data as $key => $value ){
-            if($this->isEmptyUser($key, $value)){
-                return response()->json(['status_code' => 0, 'status' => false]);
+            if(!$this->isEmptyUser("email", $data['email'])){
+                return response()->json(['status_code' => 2, 'status' => false]);
             }
-        }
+
         $authUser = User::where('email', $data['email'])->get()[0];
         $user_roles = $authUser->role[0]->id;
         return response()->json(['status_code' => 1, 'status' => true, 'user_id' =>  $authUser['id'], 'user_role'=> $user_roles]);
+        
     }
 
     public function registerAdmin(Request $request){
@@ -101,8 +108,7 @@ class UserController extends Controller
         dd($data);
     }
     public function testsomeshtik(){
-        $user_roles = User::where('email', 'mail-email.com2')->get()[0]->role;
-        dd( $_COOKIE);
+        dd(isset(User::where('name', 'Сергей1')->get()[0]));
     }
 }
 

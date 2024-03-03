@@ -27,3 +27,4 @@ class TableController extends Controller
     }
     
 }
+    

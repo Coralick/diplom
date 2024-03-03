@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,4 +24,4 @@ Route::post('/authUser', [UserController::class, "authUser"]);
 Route::post('/user', [UserController::class, "registerUser"]);
 Route::put('/user', [UserController::class, "updsteUser"]);
 Route::delete('/user', [UserController::class, "deleteUser"]);
-
+Route::get('/table', [TableController::class, "tableShow"]);
