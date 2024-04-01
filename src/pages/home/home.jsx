@@ -19,7 +19,7 @@ function Home() {
     }, [])
     return (
         <div>
-            <Header/>
+            
             <div className="main_block">
                 <div className="table_container">
                     {table[0] && table[0].map((item) => (

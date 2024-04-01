@@ -1,15 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ProfileBlock from './ProfileBlock';
 function Header() {
-    const redirectTo = () => {
-        window.location.href="/profile"
+   
+    // const redirectTo = () => {
+    //     window.location.href="/profile"
+    // }
+
+    const openCreate = () =>{
+
     }
+   
     return (
         <header>
-            <img className='logo' src={require('../media/Logo.svg').default} alt="logo" />
-            <div className="profile_container" onClick={redirectTo}>
-                <img className='profile_icon' src={require('../media/profile.svg').default} alt="profile_img" />
-                <p className="profile_name">Умпа лумпа</p>
+            <div className="function_conteiner">
+
+                <div className="line-up_container">
+                    <p className="filter_title">Вид</p>
+                    <div className="line-up">
+                        <img src={require('../media/line-up_icon_1.svg').default} alt="line-up" className='line-up_icon'/>
+                        <hr />
+                        <img src={require('../media/line-up_icon_2.svg').default} alt="line-up" className='line-up_icon'/>
+                    </div>
+                </div>
+                
+                <div className="sort_container">
+                    <p className="filter_title">Сортировка</p>
+                    <div className="sort">
+                        <img src={require('../media/profile_icon.svg').default} alt="sort" className='sort_icon'/>
+                        <hr />
+                        <img src={require('../media/flag.svg').default} alt="sort" className='sort_icon'/>
+                        <hr />
+                        <img src={require('../media/calendar_icon.svg').default} alt="sort" className='sort_icon'/>
+                        <hr />
+                        <img src={require('../media/fire.svg').default} alt="sort" className='sort_icon'/>
+                    </div>
+                </div>
+
+                <button onClick = {openCreate}className="create_button">Создать проект</button>
             </div>
+            
+            <ProfileBlock/>
+
         </header>
     );
 }

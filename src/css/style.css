@@ -1,15 +1,25 @@
-@font-face {
-    font-family: gilroy;
-    src: url(../../fonts/Gilroy-Light.otf);
-}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: gilroy;
     text-decoration: none;
-    /* background-color: #273645; */
-    /* background-image: url(../../media/fonForm.png); */
+
+    --fire-gradient:radial-gradient(#FF9800,#FF6D00, #F44336 );
+    --green-color: #94FF40;
+    --white-color:#EDEEF0;
+    --grey-color:#323955;
+    --color-1: #5A77DF;
+    --color-2: #3D539F;
+    --color-3: #2F3F7E;
+    --color-4:#0B1E40;
+    --color-0: #749EF0;
+    --yellow: #FFE247;
+    --red:#FF5757;
+    --shadow: 0 0 20px #323955; 
+    --shadow-1: 0 0 7px 3px rgba(50, 56, 85, 75);
     
 }
+
 @import "form";
+@import "layout";
+@import "fonts";

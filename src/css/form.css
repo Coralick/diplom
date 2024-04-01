@@ -1,7 +1,9 @@
 .body{
-    background-image: url(../media/fonForm.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    /* background-image: url(../media/fonForm.png);
+    background-repeat: no-repeat; */
+    background-color: #5A77DF;
+    background-size: 100vw 100vh;
+    min-height: 100vh;
 }
 .title{
     font-size: 128px;
@@ -26,17 +28,17 @@
 
 .pass{
     height: max-content;
-    width: 100%;    
+    width: fit-content;    
     position: relative;
-    background-color: #ffffff;
     margin: 0 auto;
     text-align: center;
 }
+
 .formeye{
     transform: scale(3.5, 3.5);
-    position: absolute;
-    margin-left: 1150px; 
-    padding-bottom: 35px;
+    position: absolute; 
+    top: 60%;
+    right: 16px;
     color: #3D5A76;
 }
 .input{
@@ -44,10 +46,11 @@
     border: 0;
     font-size: 64px;
     color: black;
-    margin-top: 35px;
+    margin-top: 25px;
     outline:none;
     border-bottom: 2px solid black;
 }
+
 form > .input:first-child{
     margin-top: 70px;
 }
@@ -114,35 +117,6 @@ form > .input:first-child{
     margin-top: 65px;
     text-decoration: underline;
     text-underline-offset: 15px;
-}
-
-header{
-    width: 100%;
-    padding-left:40px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 40px;
-}
-
-.profile_container{
-    display: flex;
-    column-gap: 12.5px;
-    padding: 17px 20px;
-    background-color: #273645;
-    border-bottom-left-radius: 25px;
-    align-items: center;
-    cursor: pointer;
-    transition: .4s ease;
-}
-
-.profile_container:hover{
-    background-color: #364a5f;
-    transition: .4s ease;
-}
-
-.profile_name{
-    font-size: 20px;
-    color: #ffffff;
 }
 
 .main_block{
@@ -233,4 +207,23 @@ header{
 .radio_box{
     cursor: pointer;
     margin-right: 15px;
+}
+
+@media (max-width: 1440px) {
+    .form{
+        max-width: unset;
+    }
+
+    .input{
+        width: 100%;
+        max-width: 500px;
+    }
+    .body{
+        width: 100%;
+        padding: 0 10%;
+    }
+
+    .title{
+        font-size: 78px;
+    }
 }
