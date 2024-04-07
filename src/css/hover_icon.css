@@ -1,0 +1,10 @@
+
+.sort_icon:hover:not(.sort_icon[data-icon="calendar"]) path {
+    stroke: #3150c2;
+    transition: stroke .4s ease;
+}
+
+.sort_icon[data-icon="calendar"]:hover path{
+    fill: #3150c2;
+    transition: fill .4s ease;
+}

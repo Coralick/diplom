@@ -13,6 +13,7 @@ function App() {
           <Route path='/input'element= {<Entrance />} />
           <Route path='/' element={<Layout/>}>
             <Route path='home' element={<Home/>}/>
+
           </Route>
         </Routes>
     </div>

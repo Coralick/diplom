@@ -1,0 +1,64 @@
+.main_block{
+    padding: 40px 30px;
+    width: 100%;
+    height: 100%;
+}
+
+.table_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    width: 100%;
+    gap: 40px;
+    overflow-y: auto;
+    max-height: 730px;
+}
+
+.table_card{
+    width: 100%;
+    max-width: 460px;
+    max-height: 320px;
+    padding: 20px;
+    justify-self: center;
+    border-radius: 20px;
+    background-color: var(--color-2);
+    cursor: pointer;
+    transition: .4s ease;
+    color: var(--white-color);
+}
+
+.table_card:hover{
+    background-color: #384d93;
+    transition: .4s ease;
+}
+
+.table_card hr {
+    margin: 20px 0;
+    border-radius: 10px;
+    border: 1.5px solid #749EF0;
+}
+.table_title,
+.table_text,
+.table_deadline{
+    font-size: 24px;
+    font-family: Cocomat;
+    color: var(--white-color);
+}
+
+.table_deadline{
+    font-family: Comfortaa;
+}
+
+.desc_content{
+    display: flex;
+    align-items: center;
+}
+
+.author-container{
+    display: flex;
+    column-gap: 15px;
+}
+
+
+.date-container{
+    padding: 20px 0;
+}

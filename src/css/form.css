@@ -10,12 +10,7 @@
     color: #ffffff;
     text-align: center;
 }
-#root{
-    background-color: #AFCDDE;
-    min-height: 100vh;
-    overflow-y: hidden;
-    scroll-behavior: smooth;
-}
+
 
 .form{
     max-width: 1500px;
@@ -117,60 +112,6 @@ form > .input:first-child{
     margin-top: 65px;
     text-decoration: underline;
     text-underline-offset: 15px;
-}
-
-.main_block{
-    display: flex;
-    justify-content: space-between;
-}
-
-.table_container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
-    width: 75%;
-    gap: 25px;
-    margin-left: 25px;
-    overflow-y: auto;
-    max-height: 790px;
-}
-
-.table_card{
-    width: 100%;
-    max-width: 440px;
-    padding: 22px;
-    border-radius: 15px  15px 20px 20px;
-    border-top: 18px solid #ED4E4E;
-    background-color: #E5F6FF;
-    min-height: 350px;
-    cursor: pointer;
-    transition: .4s ease;
-}
-
-.table_card:hover{
-    background-color: rgb(242, 250, 255);
-    transform: scale(1.005);
-    transition: .4s ease;
-}
-
-.table_card hr {
-    margin: 20px 0;
-    border: 1.5px solid #609AB9;
-}
-.table_title{
-    font-size: 20px;
-    text-align: center;
-    font-weight: 200;
-}
-
-.desc_content{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 80%;
-}
-
-.table_deadline{
-    text-align: end;
 }
 
 .filter_container{
