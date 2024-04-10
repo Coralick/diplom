@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 
 function Aside({children}) {
-    
+    const redirectToHome = () => {
+        window.location.href="/";
+        
+    }
+    const url = new URL(window.location.href).pathname.split('/')[1]
     return (
         <aside>    
-            <div className="logo_container">
+            <div className="logo_container" onClick={redirectToHome}>
                 <img src={require('../media/logo_icon.svg').default} alt="logo_icon" className='logo_icon' />
                 <img src={require('../media/TaskWave.svg').default} alt="logo_title" className='logo_title'/>
                 <div className="back_arrow_top-container">

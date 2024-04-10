@@ -4,6 +4,8 @@ import {Routes, Route} from 'react-router-dom'
 import './css/style.css'
 import Home from './pages/home/home';
 import Layout from './pages/Layout';
+import TaskBoard from './pages/TaskBoard/TaskBoard';
+
 
 function App() {
   return (
@@ -12,8 +14,8 @@ function App() {
           <Route exact path='/registr'element= {<Registr />} />
           <Route path='/input'element= {<Entrance />} />
           <Route path='/' element={<Layout/>}>
-            <Route path='home' element={<Home/>}/>
-
+            <Route path='' element={<Home/>}/>
+            <Route path='/taskboard/:id' element={<TaskBoard/>}/>
           </Route>
         </Routes>
     </div>

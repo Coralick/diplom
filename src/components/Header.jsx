@@ -3,7 +3,7 @@ import ProfileBlock from './ProfileBlock';
 import Modal from './Modal';
 import axios from 'axios';
 function Header() {
-   
+    const url = new URL(window.location.href).pathname.split('/')[1]
     const [formData, setFormData] = useState({
         title: '',
         content: '',
@@ -50,7 +50,7 @@ function Header() {
         const handleCloseModal = () => {
             setIsModalOpen(false);
         };
-   
+
     return (
         <header>
             <div className="function_conteiner">
@@ -96,13 +96,26 @@ function Header() {
 
                 <button onClick = {handleOpenModal} className="create_button">Создать проект</button>
             </div>
-            <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+            {url == 'taskboard' ?  
+                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
+                    <h2 className='modal_title'>Создание задачи</h2>
+                    <input type="text" placeholder='Название' className='modal_input' name="title" value={formData.title}  onChange={handleChange} required/>
+                    <input type="date" placeholder='Дедлайны' className='modal_input' name="deadline" value={formData.deadline}  onChange={handleChange} required/>
+                    <textarea placeholder='Описание' className='modal_input' name="content" value={formData.content}  onChange={handleChange} required/>
+                    <input type="text"  placeholder='Этап' className='modal_input' />
+                    <button onClick={sendTable} type='submit'>Создать</button>
+                </Modal>
+                :
+                <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                     <h2 className='modal_title'>Создание таблицы</h2>
                     <input type="text" placeholder='Название' className='modal_input' name="title" value={formData.title}  onChange={handleChange} required/>
                     <input type="text" placeholder='Дедлайны' className='modal_input' name="deadline" value={formData.deadline}  onChange={handleChange} required/>
                     <textarea placeholder='Описание' className='modal_input' name="content" value={formData.content}  onChange={handleChange} required/>
                     <button onClick={sendTable} type='submit'>Создать</button>
-            </Modal>
+                </Modal> 
+                
+                }
+            
             
             <ProfileBlock/>
 

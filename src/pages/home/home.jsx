@@ -11,6 +11,13 @@ function Home() {
         'content-type': 'application/json',
         },
     })
+
+    const redirectToTask = (e) => {
+        const id = e.target.id
+        const url = "/taskboard/" + id
+        window.location.href=url;
+    }
+
     useEffect(() => {
         http.get('api/table')
         .then(res => {
@@ -24,32 +31,31 @@ function Home() {
         });
     }, [])
     return (
-        <div>
+        <main>
             
             <div className="main_block">
                 <div className="table_container">
                     {table['tables'] && table['tables'].map((item) => (
-                    <div className="table_card">
-
-                           <div className="author-container">
+                    <div className="table_card" id={item.id} onClick={redirectToTask}>
+                        <div className="author-container">
                             <img className='profile_icon' src={require('../../media/profile_icon.svg').default} alt="profile_img" />
-                                <h2 className="table_title">{item.manager ? item.manager : "Неопознанный утконос"}</h2>
-                            </div>
-                            <hr />
-                            <div className="desc_content">
-                                <p className="table_text">{item.title}</p>
-                            </div>
-                            <hr />
-                            <div className="date-container">
-                                <p className="table_deadline">{item.deadline}</p>
-                            </div>
+                            <h2 className="table_title">{item.manager ? item.manager : "Неопознанный утконос"}</h2>
                         </div>
+                        <hr />
+                        <div className="desc_content">
+                            <p className="table_text">{item.title}</p>
+                        </div>
+                        <hr />
+                        <div className="date-container">
+                            <p className="table_deadline">{item.deadline}</p>
+                        </div>
+                    </div>
                         ))}
                 </div>
 
             </div>
 
-        </div>
+        </main>
     );
 }
 

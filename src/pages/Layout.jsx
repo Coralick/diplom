@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import Header from '../components/Header';
 import { Outlet } from 'react-router-dom';
 import Aside from '../components/Aside';
+import axios from 'axios';
 
 function Layout({children}) {
     const [burstOutStatus, setBurstOutStatus] = useState(false)
-    function burstOut(){
+    function burstOut(e){
+        e.stopPropagation()
         setBurstOutStatus(!burstOutStatus)
     }
     return (
