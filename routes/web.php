@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [UserController::class, "testsomeshtik"]);
+
 Route::get('/a', function(){
     return view('test');
 });

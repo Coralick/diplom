@@ -15,4 +15,11 @@ class Table extends Model
         return $this->hasMany(Task::class);
     }
 
+    protected $fillable = [
+        'title',
+        'content',
+        'deadline',
+    ];
+
+
 }

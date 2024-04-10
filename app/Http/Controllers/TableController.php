@@ -12,19 +12,53 @@ class TableController extends Controller
     }
 
     public function tableShow(Request $request){
-        return response()->json([Table::all()]);
+        $tableList = Table::all();
+        $count = 0;
+        foreach ($tableList as  $value) {
+            if(isset($value->user()->get()[0])){
+                $managerList[] = $value->user()->get()[0];
+                $tableList[$count]['manager'] = $value->user()->get()[0]['name'];
+            }
+            
+            $count++;
+        }
+        
+        return response()->json(["tables" => $tableList]);
     }
 
     public function createTable(Request $request){
         $data = request()->validate([
             'title' => 'string',
-            'description' => 'string',
-            'data' => 'string',
+            'content' => 'string',
+            'deadline' => 'string',
         ]);
-
-        Table::create($data);
-        return response()->json();
+        
+        $table = Table::create($data);
+        return response()->json('success');
     }
-    
+
+    public function taskShow(Request $request){
+        $id = $request->get('id');
+
+        $table = Table::find((int)$id);
+
+        $task_list = $table->task()->get();
+
+        if(isset($task_list[0])){
+            $tasksList = [
+                "table" => ["table_title" => $table->title, "table_author" => $table->user()->get()[0]->name],
+                "task" => $task_list,
+            ];
+
+            return response()->json($tasksList);
+        }
+        else {
+            return response()->json(["table" => ["table_title" => $table->title, "table_author" => $table->user()->get()[0]->name]]);
+        }
+
+    }    
+    public function taskCreate(Request $request){
+        
+    }
 }
     

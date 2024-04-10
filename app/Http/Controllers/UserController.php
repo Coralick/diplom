@@ -99,16 +99,16 @@ class UserController extends Controller
     }
 
     public function showTableShare(){
-        $dataRole = User::find(9)->role;
-        $dataTable = User::find(1)->table;
-        $dataUserFromTable = Table::find(1)->user;
-        $data[] = $dataRole;
-        $data[] = $dataTable;
-        $data[] = $dataUserFromTable;
+        $data = [    
+            "content" => "12312312",
+            "deadline" => "123213",
+            "title" => "123",
+        ];
+        Table::create($data);
         dd($data);
     }
     public function testsomeshtik(){
-        dd(isset(User::where('name', 'Сергей1')->get()[0]));
+        dd(Table::find(1)->task());
     }
 }
 
