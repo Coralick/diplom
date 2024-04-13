@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Table;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
@@ -34,7 +35,7 @@ class TableController extends Controller
         ]);
         
         $table = Table::create($data);
-        return response()->json('success');
+        return response()->json(['status' => true]);
     }
 
     public function taskShow(Request $request){
@@ -58,7 +59,16 @@ class TableController extends Controller
 
     }    
     public function taskCreate(Request $request){
-        
+        $data = request()->validate([
+            'title' => 'string',
+            'content' => 'string',
+            'deadline' => 'string',
+            'stage' => 'string',
+            'table_id' => 'integer',
+        ]);
+        $data['status'] = 0;
+        $table = Task::create($data);
+        return response()->json(['status' => true]);
     }
 }
     

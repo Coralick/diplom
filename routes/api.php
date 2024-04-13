@@ -27,4 +27,6 @@ Route::delete('/user', [UserController::class, "deleteUser"]);
 Route::get('/table', [TableController::class, "tableShow"]);
 Route::post('/table', [TableController::class, "createTable"]);
 Route::get('/task', [TableController::class, "taskShow"]);
+Route::post('/task', [TableController::class, "taskCreate"]);
+
 
