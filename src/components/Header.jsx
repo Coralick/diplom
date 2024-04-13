@@ -4,10 +4,13 @@ import Modal from './Modal';
 import axios from 'axios';
 function Header() {
     const url = new URL(window.location.href).pathname.split('/')[1]
+    const tableId = new URL(window.location.href).pathname.split('/')[2]
     const [formData, setFormData] = useState({
         title: '',
         content: '',
         deadline: '',
+        stage: '',
+        table_id: Number(tableId),
     });
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -23,15 +26,41 @@ function Header() {
         .then(res => {
             if(res.data.status){
                 console.log(res.data)
-                window.location.href="/home"
+                window.location.reload();
                 setFormData({
                     title: '',
                     deadline: '',
-                    content: ''
+                    content: '', 
                 });
             }
             else{
                 console.log(res.data)
+            }
+        })
+
+        .catch(err => {
+            // Обработка ошибки
+            console.log(err)
+        });
+    }
+    const sendTask = (e) =>{
+        e.preventDefault();
+        console.log(formData);
+        axios.post('http://diplomapi.test/api/task', formData)
+        .then(res => {
+            if(res.data.status){
+                console.log(res.data);
+                window.location.reload();
+                setFormData({
+                    title: '',
+                    deadline: '',
+                    content: '',
+                    stage: '',
+                    table_id: tableId,
+                });
+            }
+            else{
+                console.log(res.data);
             }
         })
 
@@ -96,20 +125,20 @@ function Header() {
 
                 <button onClick = {handleOpenModal} className="create_button">Создать проект</button>
             </div>
-            {url == 'taskboard' ?  
+            {url === 'taskboard' ?  
                 <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                     <h2 className='modal_title'>Создание задачи</h2>
                     <input type="text" placeholder='Название' className='modal_input' name="title" value={formData.title}  onChange={handleChange} required/>
                     <input type="date" placeholder='Дедлайны' className='modal_input' name="deadline" value={formData.deadline}  onChange={handleChange} required/>
                     <textarea placeholder='Описание' className='modal_input' name="content" value={formData.content}  onChange={handleChange} required/>
-                    <input type="text"  placeholder='Этап' className='modal_input' />
-                    <button onClick={sendTable} type='submit'>Создать</button>
+                    <input type="text"  placeholder='Этап' name="stage" value={formData.stage} onChange={handleChange} required className='modal_input' />
+                    <button onClick={sendTask} type='submit'>Создать</button>
                 </Modal>
                 :
                 <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                     <h2 className='modal_title'>Создание таблицы</h2>
                     <input type="text" placeholder='Название' className='modal_input' name="title" value={formData.title}  onChange={handleChange} required/>
-                    <input type="text" placeholder='Дедлайны' className='modal_input' name="deadline" value={formData.deadline}  onChange={handleChange} required/>
+                    <input type="date" placeholder='Дедлайны' className='modal_input' name="deadline" value={formData.deadline}  onChange={handleChange} required/>
                     <textarea placeholder='Описание' className='modal_input' name="content" value={formData.content}  onChange={handleChange} required/>
                     <button onClick={sendTable} type='submit'>Создать</button>
                 </Modal> 
