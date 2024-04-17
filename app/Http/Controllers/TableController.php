@@ -47,7 +47,8 @@ class TableController extends Controller
 
         if(isset($task_list[0])){
             $tasksList = [
-                "table" => ["table_title" => $table->title, "table_author" => $table->user()->get()[0]->name],
+                // "table" => ["table_title" => $table->title, "table_author" => $table->user()->get()[0]->name],
+                "table" => ["table_title" => $table->title],
                 "task" => $task_list,
             ];
 
