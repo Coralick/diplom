@@ -160,10 +160,15 @@ header{
     font-family: Comfortaa;
     color: var(--white-color);
     box-shadow:  0 0 10px rgba(11, 30, 64, .3);
+    transition: .4s ease;
 }
 
 .profile_container:hover{
     background-color: #7ea4f1;
+    transition: .4s ease;
+}
+.profile_container.active{
+    border-radius: 10px 10px 0 0;
     transition: .4s ease;
 }
 

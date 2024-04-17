@@ -49,7 +49,6 @@ function Header() {
         axios.post('http://diplomapi.test/api/task', formData)
         .then(res => {
             if(res.data.status){
-                console.log(res.data);
                 window.location.reload();
                 setFormData({
                     title: '',

@@ -18,9 +18,13 @@ function TaskBoard() {
     })
 
     const redirectToTask = (e) => {
-        const id = e.target.id
+        const id = e.target.dataset.id
         const url = "/taskboard/subtask/" + id
         window.location.href=url;
+    }
+    const editTask = e => {
+        const id = e.target.dataset.id
+        console.log(id)
     }
 
     useEffect(() => {
@@ -28,7 +32,9 @@ function TaskBoard() {
             .then(res => {
                 // Обработка успешного ответа
                 setTask(res.data.task)
-                console.log(res.data.task[0].stage);
+                console.log(res.data);
+                console.log(task)
+
             })
             .catch(err => {
                 // Обработка ошибки
@@ -61,7 +67,13 @@ function TaskBoard() {
                             <hr />
                             <div className="date-container">
                                 <p className="table_deadline">{item.deadline}</p>
+                                <div className="manipulation_panel">
+                                <div className='manipulation_panel_edit' data-id = {item.id} onClick={editTask}></div>
+                                    <hr />
+                                <div className='manipulation_panel_open' data-id = {item.id} onClick={redirectToTask}></div>
                             </div>
+                            </div>
+                            
                         </div>)
                             
                         )
@@ -83,6 +95,11 @@ function TaskBoard() {
                             <hr />
                             <div className="date-container">
                                 <p className="table_deadline">{item.deadline}</p>
+                                <div className="manipulation_panel">
+                                <div className='manipulation_panel_edit' data-id = {item.id} onClick={editTask}></div>
+                                    <hr />
+                                <div className='manipulation_panel_open' data-id = {item.id} onClick={redirectToTask}></div>
+                            </div>
                             </div>
                         </div>)
                             
@@ -104,6 +121,11 @@ function TaskBoard() {
                             <hr />
                             <div className="date-container">
                                 <p className="table_deadline">{item.deadline}</p>
+                                <div className="manipulation_panel">
+                                <div className='manipulation_panel_edit' data-id = {item.id} onClick={editTask}></div>
+                                    <hr />
+                                <div className='manipulation_panel_open' data-id = {item.id} onClick={redirectToTask}></div>
+                            </div>
                             </div>
                         </div>)
                             
@@ -125,6 +147,11 @@ function TaskBoard() {
                             <hr />
                             <div className="date-container">
                                 <p className="table_deadline">{item.deadline}</p>
+                                <div className="manipulation_panel">
+                                <div className='manipulation_panel_edit' data-id = {item.id} onClick={editTask}></div>
+                                    <hr />
+                                <div className='manipulation_panel_open' data-id = {item.id} onClick={redirectToTask}></div>
+                            </div>
                             </div>
                         </div>)
                             

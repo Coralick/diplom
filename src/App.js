@@ -11,9 +11,9 @@ function App() {
   return (
       <div>
         <Routes>
+          <Route path='/'element= {<Entrance />} />
           <Route exact path='/registr'element= {<Registr />} />
-          <Route path='/input'element= {<Entrance />} />
-          <Route path='/' element={<Layout/>}>
+          <Route path='/table' element={<Layout/>}>
             <Route path='' element={<Home/>}/>
             <Route path='/taskboard/:id' element={<TaskBoard/>}/>
           </Route>

@@ -12,9 +12,12 @@ function ProfileBlock() {
             setModalStat(false)
         }
     }
+    const exitHandler = () => {
+        window.location.href = '/input'
+    }
 
     return (
-        <div className="profile_container" onClick={openPorfileModal}>
+        <div className={modalStat ? "profile_container active" : "profile_container"} onClick={openPorfileModal}>
 
                 <img className='profile_icon' src={require('../media/profile_icon.svg').default} alt="profile_img" />
                 <p className="profile_name">Константин</p>
@@ -32,7 +35,7 @@ function ProfileBlock() {
                             <p className="profile_tab_title">Админ панель</p>
                         </div>
 
-                        <div className="profileTab">
+                        <div className="profileTab" onClick={exitHandler}>
                             <img src={require('../media/exit_icon.svg').default} alt="profile_tab_icon" className="profile_tab_icon" />
                             <p className="profile_tab_title">Выход</p>
                         </div>

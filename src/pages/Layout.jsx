@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { Outlet } from 'react-router-dom';
 import Aside from '../components/Aside';
@@ -10,6 +10,8 @@ function Layout({children}) {
         e.stopPropagation()
         setBurstOutStatus(!burstOutStatus)
     }
+
+
     return (
         
         <div className={!burstOutStatus ? 'layout' : 'layout active'}>
@@ -19,7 +21,7 @@ function Layout({children}) {
                     </svg>
             </Aside>
             <Header/>
-            <Outlet className="main_container"/>
+            <Outlet  className="main_container"/>
         </div>
     );
 }
