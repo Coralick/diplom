@@ -11,6 +11,34 @@ function Layout({children}) {
         setBurstOutStatus(!burstOutStatus)
     }
 
+    let url = new URL(window.location.href).pathname.split('/')[1]
+
+    if(url = 'task'){
+        url = url + '?id=' + new URL(window.location.href).pathname.split('/')[2];
+    }
+    
+    console.log(url)
+    const [data, setData] = useState([])
+    const  http = axios.create({
+        baseURL: 'http://diplomapi.test/',
+        headers: {
+        'X-Requested-With': 'XMLHttpRequest',
+        'content-type': 'application/json',
+        },
+    })
+
+
+    useEffect(() => {
+        http.get('api/' + url)
+        .then(res => {
+            // Обработка успешного ответа
+            setData(res.data)
+        })
+        .catch(err => {
+            // Обработка ошибки
+            console.error(err);
+        });
+    }, [])
 
     return (
         
@@ -21,7 +49,7 @@ function Layout({children}) {
                     </svg>
             </Aside>
             <Header/>
-            <Outlet  className="main_container"/>
+            <Outlet dataRes={data}  className="main_container"/>
         </div>
     );
 }

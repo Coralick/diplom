@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 function Aside({children}) {
     const redirectToHome = () => {
-        window.location.href="/";
+        window.location.href="/table";
         
     }
     const url = new URL(window.location.href).pathname.split('/')[1]

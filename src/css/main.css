@@ -14,6 +14,7 @@
 }
 
 .table_card {
+    position: relative;
     width: 100%;
     max-width: 460px;
     max-height: 320px;
@@ -48,6 +49,28 @@
     font-size: 24px;
     font-family: Cocomat;
     color: var(--white-color);
+}
+.timing_tab{
+    display: block;
+    width: 40px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    right: 40px;
+    border-radius: 0 0 10px 10px;
+
+}
+
+.timing_tab.green{
+    background-color: var(--green-color);
+}
+
+.timing_tab.yellow{
+    background-color: var(--yellow);
+}
+
+.timing_tab.red{
+    background-color: var(--red);
 }
 
 .table_deadline {

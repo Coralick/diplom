@@ -121,10 +121,13 @@ function Header() {
                         </svg>
                     </div>
                 </div>
-
+                {url === 'task' ?  
+                <button onClick = {handleOpenModal} className="create_button">Создать задачу</button>
+                :
                 <button onClick = {handleOpenModal} className="create_button">Создать проект</button>
+                }
             </div>
-            {url === 'taskboard' ?  
+            {url === 'task' ?  
                 <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
                     <h2 className='modal_title'>Создание задачи</h2>
                     <input type="text" placeholder='Название' className='modal_input' name="title" value={formData.title}  onChange={handleChange} required/>

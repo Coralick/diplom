@@ -13,7 +13,7 @@ function ProfileBlock() {
         }
     }
     const exitHandler = () => {
-        window.location.href = '/input'
+        window.location.href = '/'
     }
 
     return (

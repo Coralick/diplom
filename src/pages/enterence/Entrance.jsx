@@ -36,7 +36,7 @@ const Entrance = () => {
         axios.post('http://diplomapi.test/api/authUser', formData)
         .then(res => {
             if(res.data.status){
-                window.location.href="/"
+                window.location.href="/table"
                 setFormData({
                     name: '',
                     email: '',

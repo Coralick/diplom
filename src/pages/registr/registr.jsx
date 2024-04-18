@@ -100,7 +100,7 @@ const Registr = () => {
                 </form>
 
                 <div className="b">
-                    <Link to='/input' className="link" >Вход</Link>
+                    <Link to='/' className="link" >Вход</Link>
                 </div>
             </div>
         </div>
