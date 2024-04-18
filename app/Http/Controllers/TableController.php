@@ -40,7 +40,7 @@ class TableController extends Controller
 
     public function taskShow(Request $request){
         $id = $request->get('id');
-
+        
         $table = Table::find((int)$id);
 
         $task_list = $table->task()->get();

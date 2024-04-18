@@ -14,7 +14,8 @@ class Task extends Model
         'deadline',
         'stage',
         'status',
-        'table_id'
+        'table_id',
+        'created_at',
     ];
 
     public function table(){
