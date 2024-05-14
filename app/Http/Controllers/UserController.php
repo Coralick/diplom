@@ -16,6 +16,19 @@ class UserController extends Controller
         return response()->json($data);
     }
 
+    public function getUser(Request $request){
+
+        $user_id = $request->get('id');
+
+        if(isset($user_id)){
+            $user = User::find($user_id);
+            $user->role()->get();
+            return response()->json(['status_code' => 0, 'status' => true, 'user_name' =>  $user->name]);
+        }
+
+        return response()->json(['status_code' => 0, 'status' => false]);
+    }
+
     public function checkUserIsset($login, $password){
         if(isset(User::where('email', $login)->get()[0])){
             $user = User::where('email', $login)->get()[0];
@@ -35,6 +48,7 @@ class UserController extends Controller
             'password' => 'string',
             'password_repeat' => 'string',
         ]);
+
         if($data['password'] != $data['password_repeat']){
             return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'Пароли не совпадают']);
         }
@@ -52,7 +66,8 @@ class UserController extends Controller
         else{
             return response()->json(['status_code' => 0, 'status' => false, 'msg' => 'data']);
         }
-        return response()->json(['status_code' => 1, 'status' => true, 'msg' => 'success']);
+
+        return response()->json(['status' => true, 'user_id' => $user->id, 'user_role' => $user->role()->get()->name, 'msg' => 'success']);
     }
 
     public function authUser(Request $request){
@@ -63,8 +78,8 @@ class UserController extends Controller
 
         if($this->checkUserIsset( $data['email'], $data['password'])){
             $authUser = User::where('email', $data['email'])->get()[0];
-            $user_roles = $authUser->role[0]->id;
-            return response()->json(['status_code' => 1, 'status' => true, 'user_id' =>  $authUser['id'], 'user_role'=> $user_roles]);
+            $user_name = $authUser->role[0]->name;
+            return response()->json(['status_code' => 1, 'status' => true, 'user_id' =>  $authUser->id,  'user_role' => $user_name]);
         }
         else{
             return response()->json(['status_code' => 2, 'status' => false]);
@@ -102,6 +117,7 @@ class UserController extends Controller
             "deadline" => "123213",
             "title" => "123",
         ];
+
         Table::create($data);
         dd($data);
     }

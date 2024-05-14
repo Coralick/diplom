@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('content');
             $table->dateTime('deadline')->nullable();
+            $table->integer('flag');
             $table->timestamps();
         });
     }

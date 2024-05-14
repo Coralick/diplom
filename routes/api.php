@@ -20,13 +20,22 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('user', function (Request $request) {
     return $request->user();
 });
+
 Route::post('/authUser', [UserController::class, "authUser"]);
+
+Route::get('/user', [UserController::class, "getUser"]);
 Route::post('/user', [UserController::class, "registerUser"]);
 Route::put('/user', [UserController::class, "updsteUser"]);
 Route::delete('/user', [UserController::class, "deleteUser"]);
+
 Route::get('/table', [TableController::class, "tableShow"]);
 Route::post('/table', [TableController::class, "createTable"]);
+Route::put('/table', [TableController::class, "updateTable"]);
+Route::get('/table_one', [TableController::class, "getOneTable"]);
+
 Route::get('/task', [TableController::class, "taskShow"]);
+Route::put('/task', [TableController::class, "updateTask"]);
 Route::post('/task', [TableController::class, "taskCreate"]);
+Route::get('/task_one', [TableController::class, "getOneTask"]);
 
 

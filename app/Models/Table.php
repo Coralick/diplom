@@ -19,6 +19,7 @@ class Table extends Model
         'title',
         'content',
         'deadline',
+        'flag',
         'created_at',
     ];
 
