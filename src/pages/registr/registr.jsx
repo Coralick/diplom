@@ -1,9 +1,15 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import axios from "axios"
+import { getCookie } from "../../App"
 
 
 const Registr = () => {
+
+    if (getCookie('user_id') != undefined) {
+        window.location.href = "/table"
+    }
+
     const [eye, setEye] = useState(false)
     const [eyeRepeat, setEyeRepeat] = useState(false)
     const [error, setError] = useState(true)
@@ -15,22 +21,22 @@ const Registr = () => {
     });
 
     const changeEyes = (e) => {
-        if(e.target.dataset.form === "password"){
-            if(eye){
+        if (e.target.dataset.form === "password") {
+            if (eye) {
                 setEye(prev => !prev)
                 e.target.className = "eye_form close"
             }
-            else{
+            else {
                 setEye(prev => !prev)
                 e.target.className = "eye_form";
             }
         }
-        else{
-            if(eyeRepeat){
+        else {
+            if (eyeRepeat) {
                 setEyeRepeat(prev => !prev)
                 e.target.className = "eye_form close"
             }
-            else{
+            else {
                 setEyeRepeat(prev => !prev)
                 e.target.className = "eye_form";
             }
@@ -48,11 +54,11 @@ const Registr = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://diplomapi.test/api/user', formData)
+        axios.post('https://cf06014.tw1.ru/api/user', formData)
             .then(res => {
                 if (res.data.status) {
-                    console.log(res.data)
-                    window.location.href = "/"
+                    document.cookie = "user_id=" + res.data.user_id + "; path=/"
+                    window.location.href = "/table"
                     setFormData({
                         name: '',
                         email: '',
@@ -69,6 +75,7 @@ const Registr = () => {
                 console.log(err)
                 setError(false)
             });
+
         // Очистка данных формы
 
     };
@@ -80,7 +87,7 @@ const Registr = () => {
                 <p className="title">Регистрация</p>
 
                 <form onSubmit={handleSubmit} className="form">
-                    
+
                     <input type="text" name="name" placeholder="Имя" className={error ? "input" : "input active"} required value={formData.name} onChange={handleChange} />
                     <input type="email" name="email" placeholder="Электронная почта" className={error ? "input" : "input active"} required value={formData.email} onChange={handleChange} />
                     <div className="pass">
@@ -92,7 +99,7 @@ const Registr = () => {
                         <input className={error ? "input" : "input active"} name="password_repeat" value={formData.password_repeat} onChange={handleChange} type={eyeRepeat ? 'text' : 'password'} placeholder="Повтор пароля" required />
                         <div className="eye_form close" data-form="password_repeat" onClick={changeEyes}></div>
                     </div>
-            
+
 
                     <p className={error ? "msg" : "msg active"}>Данные уже используются</p>
 

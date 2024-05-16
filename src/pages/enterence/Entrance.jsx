@@ -1,15 +1,20 @@
 import { Link } from "react-router-dom"
 import { useState } from "react"
 import axios from "axios"
-    
+import { getCookie } from "../../App"
 
 const Entrance = () => {
+
+    if(getCookie('user_id') != undefined){
+        window.location.href="/table"
+    }
     const [eye,setEye] = useState(false)
     const [error, setError] = useState(true)
     const [formData, setFormData] = useState({
         email: '',
         password: ''
     });
+
     const handleChange = (e) => {
         setError(true)
         const { name, value } = e.target;
@@ -33,9 +38,11 @@ const Entrance = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://diplomapi.test/api/authUser', formData)
+        axios.post('https://cf06014.tw1.ru/api/authUser', formData)
         .then(res => {
             if(res.data.status){
+                console.log( res.data.user_id)
+                document.cookie = "user_id=" +  res.data.user_id + "; path=/"
                 window.location.href="/table"
                 setFormData({
                     name: '',

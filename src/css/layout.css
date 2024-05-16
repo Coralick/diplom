@@ -154,7 +154,7 @@ header{
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     cursor: pointer;
     transition: .4s ease;
     font-family: Comfortaa;
@@ -167,6 +167,7 @@ header{
     background-color: #7ea4f1;
     transition: .4s ease;
 }
+
 .profile_container.active{
     border-radius: 10px 10px 0 0;
     transition: .4s ease;
@@ -201,7 +202,7 @@ header{
 
 .profile_name{
     font-size: 24px;
-
+    letter-spacing: 0%;
 }
 
 .profileModal{
@@ -214,6 +215,7 @@ header{
     position: absolute;
     width: 100%;
     top: 60px;
+    left: 0px;
     border-end-end-radius: 10px;
     border-end-start-radius: 10px;
     background-color: var(--color-3);
@@ -224,6 +226,7 @@ header{
 .profileTab{
     display: flex;
     column-gap: 15px;
+    color: var(--white-color);
 }
 
 .profileModal.active{
@@ -385,6 +388,41 @@ header{
 .layout.active .file_system_top-title{
     animation: burstOut .3s ease;
     display: block
+
+}
+
+.layout .task_info-container{
+    display: none;
+    transition: .4s ease;
+}
+
+.layout.active .task_info-container{
+    display: block;
+    transition: .4s ease;
+}
+
+.ai_left{
+    align-items: start;
+}
+
+.manager-container{
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.manager_title,
+.task_text{
+    font-size: 24px;
+    line-height: 25px;
+    color: var(--white-color);
+    font-family: Cocomat;
+}
+
+.manager-container img{
+    width: 60px;
+    height: 60px;
 }
 
 @keyframes burstOut {
