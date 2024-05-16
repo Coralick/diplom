@@ -12,7 +12,7 @@ function Table(itemProp) {
 
     const redirectToDesc = e => {
         const id = e.target.dataset.id
-        const url = window.location.href + "/description"
+        const url = "/task/description/" + id
         window.location.href = url;
     }
 

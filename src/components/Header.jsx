@@ -174,27 +174,28 @@ function Header() {
         <header>
             <div className="function_conteiner">
 
-                <div className="line-up_container">
+                {/* <div className="line-up_container">
                     <p className="filter_title">Вид</p>
                     <div className="line-up">
                         <img src={require('../media/line-up_icon_1.svg').default} alt="line-up" className='line-up_icon' />
                         <hr />
                         <img src={require('../media/line-up_icon_2.svg').default} alt="line-up" className='line-up_icon' />
                     </div>
-                </div>
-
-                <div className="sort_container">
-                    <p className="filter_title">Сортировка</p>
-                    <div className="sort">
-                        <div onClick={sortBy} data-sort="manager" className="sort_icon"></div>
-                        <hr />
-                        <div onClick={sortBy} data-sort="flag" className="sort_icon"></div>
-                        <hr />
-                        <div onClick={sortBy} data-sort="created_at" className="sort_icon"></div>
-                        <hr />
-                        <div onClick={sortBy} data-sort="deadline" className="sort_icon"></div>
+                </div> */}
+                {url != 'task' &&
+                    <div className="sort_container">
+                        <p className="filter_title">Сортировка</p>
+                        <div className="sort">
+                            <div onClick={sortBy} data-sort="manager" className="sort_icon"></div>
+                            <hr />
+                            <div onClick={sortBy} data-sort="flag" className="sort_icon"></div>
+                            <hr />
+                            <div onClick={sortBy} data-sort="created_at" className="sort_icon"></div>
+                            <hr />
+                            <div onClick={sortBy} data-sort="deadline" className="sort_icon"></div>
+                        </div>
                     </div>
-                </div>
+                }
 
                 {url === 'task' ?
 

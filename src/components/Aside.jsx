@@ -34,7 +34,7 @@ function Aside({ children }) {
                                 <svg className='file_system_icon' width="26" height="22" viewBox="0 0 26 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M1 9.23529H25M22.6 21C23.2365 21 23.847 20.7521 24.2971 20.3108C24.7471 19.8696 25 19.2711 25 18.6471V6.88235C25 6.25831 24.7471 5.65983 24.2971 5.21857C23.847 4.77731 23.2365 4.52941 22.6 4.52941H13.12C12.7186 4.53327 12.3227 4.43837 11.9684 4.25339C11.6141 4.06841 11.3128 3.79927 11.092 3.47059L10.12 2.05882C9.90147 1.73349 9.60397 1.46645 9.2542 1.28164C8.90443 1.09684 8.51333 1.00006 8.116 1H3.4C2.76348 1 2.15303 1.2479 1.70294 1.68916C1.25286 2.13042 1 2.7289 1 3.35294V18.6471C1 19.2711 1.25286 19.8696 1.70294 20.3108C2.15303 20.7521 2.76348 21 3.4 21H22.6Z" stroke="#EDEEF0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
-                                <p className="file_system_top-title">{data['task'] && data['table'].table_title}</p>
+                                <p className="file_system_top-title">Все проекты</p>
                             </div>
                             <div className="file_system-body">
                                 {data['tables'] && data['tables'].map((item) => (

@@ -24,7 +24,7 @@ function App() {
           <Route path='table' element={<Home />} />
           <Route path='task/:id' element={<TaskBoard />} /> 
         </Route>
-        <Route exact path='/task/:id/description' element={<TaskDesc />} />
+        <Route exact path='/task/description/:id' element={<TaskDesc />} />
       </Routes>
     </div>
   );
