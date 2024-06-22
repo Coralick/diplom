@@ -11,12 +11,4 @@ export default defineConfig({
         }),
         react(),
     ],
-    build: {
-        cssCodeSplit: false,
-    },
-    server: {
-        hmr: {
-            overlay: false,
-        },
-    },
 });

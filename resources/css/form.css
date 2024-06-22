@@ -5,7 +5,7 @@
 }
 
 .body {
-    background-image: url(../media/background.png);
+    background-image: url(/media/background.png);
     background-repeat: no-repeat;
     /* background-color: #5d77d3; */
     background-size: 100vw 100vh;
@@ -104,7 +104,7 @@
 }
 
 .input::placeholder {
-    font-family: 'Comfortaa';
+    font-family: "Comfortaa";
     font-size: 20px;
     color: #749EF0;
 }
@@ -112,7 +112,7 @@
 .error_msg {
     font-size: 14px;
     color: rgb(220 38 38);
-    font-family: Comfortaa;
+    font-family: "Comfortaa";
 }
 
 .msg {
@@ -132,7 +132,7 @@
 }
 
 .button {
-    font-family: 'Comfortaa';
+    font-family: "Comfortaa";
     background-color: #5A77DF;
     font-size: 20px;
     padding: 19px 20px 19px 20px;
@@ -144,7 +144,7 @@
 }
 
 .button:hover {
-    background-color: #4a778f;
+    background-color: #5459E7;
     transition: .4s ease;
 }
 

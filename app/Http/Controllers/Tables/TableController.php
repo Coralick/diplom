@@ -18,20 +18,25 @@ class TableController extends Controller
             return Table::orderBy($order, 'asc')->get();
 
         } else {
-            return Table::all();
+            $tableList = Table::all()->all();
+            usort($tableList, function ($a, $b) {
+                return strcmp($a->user->name, $b->user->name);
+            });
+            return $tableList;
         }
     }
 
     public function get(Request $request)
     {
 
-        $tableList = Table::all();
         $formData = false;
-
-        if ($request->get('id')) {
-            $formData = Table::find($request->get('id'));
-        } elseif ($request->get('order')) {
+        if($request->get('update')){
+            $formData = Table::find($request->get('update'));
+        }
+        if ($request->get('order')) {
             $tableList = $this->orderItems($request->get('order'));
+        } else {
+            $tableList = Table::all();
         }
         foreach ($tableList as $item) {
             $item['manager'] = $item->user->name;
@@ -85,7 +90,7 @@ class TableController extends Controller
             'content' => 'required',
             'deadline' => 'required',
         ]);
-        $table = Table::find($id);
+        $table = Table::find($id['id']);
         $table->title = $data['title'];
         $table->content = $data['content'];
         $table->deadline = $data['deadline'];
@@ -103,6 +108,7 @@ class TableController extends Controller
         $tasks = $table->task()->get();
         if (isset($tasks[0])) {
             foreach ($tasks as $item) {
+                $item->user()->detach();
                 $item->delete();
             }
         }

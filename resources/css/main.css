@@ -122,9 +122,8 @@
 .table_card .manipulation_panel {
     display: none;
     opacity: 0;
-    animation-name: fadein .4s reverse;
     column-gap: 20px;
-    width: 100%;
+    width: fit-content;
     max-width: 204px;
     height: 100%;
     background-color: var(--white-color);
@@ -235,7 +234,7 @@
     align-items: center;
     row-gap: 40px;
     padding: 40px 20px;
-    max-height: 900px;
+    max-height: 68.9vh;
     overflow-y: auto;
 }
 

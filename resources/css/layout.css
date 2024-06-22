@@ -495,7 +495,7 @@ header {
 
 .modal-container .form {
     width: 100%;
-    gap: 10px   ;
+    gap: 10px;
 }
 
 .modal .close-container {
@@ -531,7 +531,7 @@ header {
 
 .modal_label {
     color: var(--white-color);
-    font-family: Cocomat;
+    font-family: Comfortaa;
     font-size: 22px;
     text-align: left;
     display: flex;
@@ -560,7 +560,8 @@ header {
     text-align: left;
 }
 
-.modal input {
+.modal input,
+.modal select {
     width: 100%;
     border-radius: 5px;
     border: none;
@@ -579,7 +580,7 @@ header {
     color: var(--grey-color);
     cursor: pointer;
     transition: .4s ease;
-    margin-top: 10px ;
+    margin-top: 10px;
 }
 
 .modal button:hover {
@@ -597,17 +598,24 @@ header {
 
 .modal input,
 .modal input[type='data'],
-.modal textarea {
+.modal textarea,
+.modal select {
     color: var(--color-4);
     font-family: Comfortaa;
     font-size: 16px;
     padding: 8px 16px;
 }
 
+.modal select,
+.modal input[type='date']{
+    cursor: pointer;
+}
+
 
 .modal input::placeholder,
-.modal input[type='data']::placeholder,
-.modal textarea::placeholder {
+.modal input[type='date']::placeholder,
+.modal textarea::placeholder,
+.modal select::placeholder {
     color: #333333;
     font-family: Comfortaa;
     font-size: 16px;

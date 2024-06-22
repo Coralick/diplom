@@ -3,11 +3,9 @@ import React, { useContext, useEffect } from 'react';
 
 function ModalForm({ children, title, trigger }) {
     const { modalStatus, updateModalStatus } = useContext(ModalContext);
-    if (trigger) {
-        () => updateModalStatus()
-    }
+
     return (
-        <div className={`modal ${modalStatus && 'active'}`}>
+        <div className={`modal ${(modalStatus || trigger) && 'active'}`}>
             <div className='modal-container'>
                 <div className="form-header">
                     <svg onClick={updateModalStatus} className='back_aside_arrow' width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

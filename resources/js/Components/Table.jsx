@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
-import { Link, useForm } from '@inertiajs/react';
+import { Link, useForm, usePage } from '@inertiajs/react';
 import { ModalContext } from '@/Layouts/AuthenticatedLayout';
 
 function Table({ itemProp, role, type }) {
+    const {url} = usePage();
     const {
         data,
         setData,
@@ -21,19 +22,7 @@ function Table({ itemProp, role, type }) {
 
     const { updateModalStatus, modalStatus } = useContext(ModalContext)
 
-    const editTable = e => {
-        const id = e.target.dataset.id
-        console.log(id)
-        if (type == 'home') {
-            const url = '/' + type + + '?change-id=' + id
-        }
-        else {
-            const url = '/home/' + type + '?id=' + itemProp.table_id + '&change-id=' + id
-        }
-
-        get(url)
-        // updateModalStatus()
-    }
+   
 
     function deleteItem(id) {
         setData(itemProp.id)
@@ -92,7 +81,7 @@ function Table({ itemProp, role, type }) {
                     <div className="manipulation_panel">
                         <Link href={route(type + '.' + 'delete')} data={{ 'id': itemProp.id }} method='delete'><div className='delete'></div></Link>
                         <hr />
-                        <Link href={'/' + type + '?id=' + itemProp.id} method='get'><div className='edit' data-id={itemProp.id}></div></Link>
+                        <Link href={url} method='get' data={{update: itemProp.id}}><div className='edit'></div></Link>
                         <hr />
                         <Link href={route(type + '.getTask')} data={{ 'id': itemProp.id }} method='get'><div className='open' onClick={taskRedirect} data-id={itemProp.id}></div></Link>
                     </div>

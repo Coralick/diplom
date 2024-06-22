@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout, { ModalContext } from '@/Layouts/AuthenticatedLayout';
 import Table from '@/Components/Table';
 import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
@@ -8,22 +8,37 @@ import InputLabel from '@/Components/InputLabel';
 
 
 export default function Home({ auth, role = '', tableList, formData = false }) {
-    const [trigger, setTrigger] = useState(false)
-    const submitCreate = (e) => {
+
+    const { data, setData, post, patch, processing, errors, reset } = useForm({
+        title: formData ? formData.title : '',
+        content: formData ? formData.content : '',
+        deadline: formData ? formData.deadline : '',
+        id: formData ? formData.id : '',
+    });
+
+    const submitEdit = (e) => {
         e.preventDefault();
-        post(route('home.create'),);
+        patch(route('home.update'),);
+        
         setData({
-            title: formData ? formData.title : '',
-            content: formData ? formData.content : '',
-            deadline: formData ? formData.deadline : '',
+            title: '',
+            content:  '',
+            deadline:  '',
         })
     };
 
-    const { data, setData, post, processing, errors, reset } = useForm({
-        title: '',
-        content: '',
-        deadline: '',
-    });
+    const submitCreate = (e) => {
+        e.preventDefault();
+        post(route('home.create'),);
+        
+        setData({
+            title: '',
+            content:  '',
+            deadline:  '',
+        })
+    };
+
+
 
     return (
         <AuthenticatedLayout
@@ -48,8 +63,8 @@ export default function Home({ auth, role = '', tableList, formData = false }) {
 
             {role <= 2 && (
 
-                <ModalForm trigger={formData} title={'Создание проекта'}>
-                    <form className='form' onSubmit={submitCreate}>
+                <ModalForm trigger={formData} title={ formData ? 'Изменить проект' :  'Создание проекта'}>
+                    <form className='form' onSubmit={formData ? submitEdit : submitCreate}>
                         <InputLabel className={'modal_label'} for={'title'}>Название
                             <TextInput
                                 id="title"
@@ -79,7 +94,7 @@ export default function Home({ auth, role = '', tableList, formData = false }) {
                                 onChange={(e) => setData('deadline', e.target.value)}
                             />
                         </InputLabel>
-                        <button type='submit'>Создать</button>
+                        <button type='submit'>{formData ? 'Изменить' : 'Создать'}</button>
                     </form>
                 </ModalForm>
             )}

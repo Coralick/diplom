@@ -1,23 +1,21 @@
-
-
 import React, { useContext, useEffect, useState } from 'react';
 import ModalForm from '@/Components/ModalForm';
-import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
+import AuthenticatedLayout, { ModalContext } from '@/Layouts/AuthenticatedLayout';
 import Table from '@/Components/Table';
 import { Head, useForm } from '@inertiajs/react';
 import InputLabel from '@/Components/InputLabel';
 import TextInput from '@/Components/TextInput';
 
 function TaskBoard({ auth, role = '', table, stages, taskList, users = [], formData = false }) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, post, patch, processing, errors, reset } = useForm({
         title: formData ? formData.title : '',
         content: formData ? formData.content : '',
         deadline: formData ? formData.deadline : '',
-        stage_id: formData ? formData.stage_id : null,
-        table_id: table.id
+        stage_id: formData ? formData.stage_id : '0',
+        table_id: table.id,
+        id: formData ? formData.id : '',
     });
-
-    console.log(data.table_id)
+    console.log(data)
 
     const submitCreate = (e) => {
         e.preventDefault();
@@ -28,7 +26,20 @@ function TaskBoard({ auth, role = '', table, stages, taskList, users = [], formD
             title: '',
             content: '',
             deadline: '',
-            stage_id: null,
+            stage_id: '0',
+            table_id: table.id,
+        })
+    };
+
+    const submitEdit = (e) => {
+        e.preventDefault();
+        patch(route('task.update'),);
+
+        setData({
+            title: '',
+            content: '',
+            deadline: '',
+            stage_id: '0',
             table_id: table.id,
         })
     };
@@ -81,13 +92,14 @@ function TaskBoard({ auth, role = '', table, stages, taskList, users = [], formD
                     </div>
                 </div>
             </div>
-            <ModalForm trigger={formData} title={'Создание задачи'}>
-                <form className='form' onSubmit={submitCreate}>
+            <ModalForm trigger={formData} title={formData ? 'Изменить задачу' : 'Создание задачи'}>
+                <form className='form' onSubmit={formData ? submitEdit : submitCreate}>
                     <InputLabel className={'modal_label'} for={'title'}>Название
                         <TextInput
                             id="title"
                             type="text"
                             name="title"
+                            required
                             value={data.title}
                             className={`modal_input`}
                             autoComplete="title"
@@ -105,6 +117,7 @@ function TaskBoard({ auth, role = '', table, stages, taskList, users = [], formD
                             id="deadline"
                             type="date"
                             name="deadline"
+                            required
                             value={data.deadline}
                             className={`modal_input`}
                             autoComplete="deadline"
@@ -115,14 +128,14 @@ function TaskBoard({ auth, role = '', table, stages, taskList, users = [], formD
                     </InputLabel>
                     <InputLabel className={'modal_label'} for={'deadline'}>Этап задачи
 
-                        <select name="stage_id" id="stage_id" onChange={(e) => setData('stage_id', e.target.value)} value={data.stage_id}>
-                            <option disabled selected>Этап задачи</option>
+                        <select name="stage_id" id="stage_id" onChange={(e) => setData('stage_id', e.target.value)} value={data.stage_id} required>
+                            <option disabled selected value='0'>Этап задачи</option>
                             {stages && stages.map(item => (
                                 <option value={item.id}>{item.name}</option>
                             ))}
                         </select>
                     </InputLabel>
-                    <button type='submit'>Создать</button>
+                    <button type='submit'>{formData ? 'Изменить' : 'Создать'}</button>
                 </form>
             </ModalForm>
         </AuthenticatedLayout>

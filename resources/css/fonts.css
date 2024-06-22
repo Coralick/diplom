@@ -1,10 +1,10 @@
 
 @font-face {
     font-family: 'Comfortaa';
-    src: url(../media/Fonts/Comfortaa/Comfortaa-Bold.ttf) format('truetype');
+    src: url(/media/Fonts/Comfortaa/Comfortaa-Bold.ttf) format('truetype');
 }
 
 @font-face {
     font-family: 'COCOMAT';
-    src: url(../media/Fonts/Cocomat/CocomatPro-ExtraBold.ttf) format('truetype');
+    src: url(/media/Fonts/Cocomat/CocomatPro-ExtraBold.ttf) format('truetype');
 }

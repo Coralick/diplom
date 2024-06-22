@@ -14,22 +14,19 @@ use Inertia\Inertia;
 class TaskController extends Controller
 {
 
-    public function orderItems($order, $taskList)
+    public function orderItems($order, $id)
     {
-        if ($order == "manager") {
-            $taskList = $taskList->all();
-            usort($taskList, function ($a, $b) {
-                return strcmp($a['manager'], $b['manager']);
-            });
 
-        } elseif ($order != '') {
+        if ($order != '' && $order != "manager") {
 
-            return Table::orderBy($order, 'asc')->get();
+            return Task::where('table_id', $id)->orderBy($order, 'asc')->get();
 
         } else {
-
-            return Table::all();
-
+            $tableList = Table::all()->all();
+            usort($tableList, function ($a, $b) {
+                return strcmp($a->user->name, $b->user->name);
+            });
+            return $tableList;
         }
     }
 
@@ -44,15 +41,19 @@ class TaskController extends Controller
 
         $stages = Stage::all();
         $user = User::where('role_id', 3)->get();
-        if ($request->get('change-id')) {
-            $formData = Table::find($request->get('change-id'));
-        } elseif ($request->get('order')) {
-            $taskList = $this->orderItems($request->get('order'), $taskList);
+
+        if ($request->get('order')) {
+            $taskList = $this->orderItems($request->get('order'), $id);
+        }
+
+        if ($request->get('update')) {
+            $formData = Task::find($request->get('update'));
         }
 
         foreach ($taskList as $item) {
             $item['deadline'] = date('d-m-Y', strtotime($item['deadline']));
         }
+
 
         return Inertia::render('TaskBoard/TaskBoard', [
             'table' => $table,
@@ -116,13 +117,18 @@ class TaskController extends Controller
             'title' => ['string'],
             'content' => ['string'],
             'deadline' => ['string'],
-            'stage' => ['integer'],
+            'stage_id' => ['integer'],
             'table_id' => 'integer',
         ]);
 
         $task = Task::find($data['id']);
 
-        return redirect()->intended(route('table', absolute: false));
+        $task->title = $data['title'];
+        $task->content = $data['content'];
+        $task->deadline = $data['deadline'];
+        $task->stage_id = $data['stage_id'];
+        $task->save();
+        return redirect('/home/table?id=' . $data['table_id']);
     }
 
     public function delete(Request $request)
@@ -132,6 +138,7 @@ class TaskController extends Controller
         ]);
         $task = Task::find($data['id']);
         $id = $task->table->id;
+        Task::find($data['id'])->user()->detach();
         Task::find($data['id'])->delete();
 
         return redirect('/home/table?id=' . $id);
@@ -151,7 +158,8 @@ class TaskController extends Controller
         return redirect('/home/table/task?id=' . $task_id['task_id']);
     }
 
-    public function removeUser(Request $request){
+    public function removeUser(Request $request)
+    {
         $id = $request->validate([
             'id' => 'integer',
         ]);
