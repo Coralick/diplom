@@ -3,13 +3,23 @@ import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 import { Head } from '@inertiajs/react';
 import ProfileLayout from '@/Layouts/ProfileLayout';
+import Table from '@/Components/Table';
 
-export default function Edit({ auth, mustVerifyEmail, status }) {
+export default function Edit({ auth, mustVerifyEmail, status, taskList = false }) {
     return (
         <ProfileLayout>
             <Head title="Profile" />
 
-            <div className="py-12">
+            <div className="profile-container">
+                <div className="task_list-container">
+                    <h2 className='title'>Мои задачи</h2>
+                    <div className="task-container">
+                        {taskList ? taskList.map((item) => (
+                            <Table type={'task'} role={3}  itemProp={item} />
+                        )): 
+                        <p className='text'>Нет задач</p>}
+                    </div>
+                </div>
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
                     <div className="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                         <UpdateProfileInformationForm

@@ -12,10 +12,20 @@ function Header({ user, role }) {
                 <div className="sort_container">
                     <p className="filter_title">Сортировка</p>
                     <div className="sort">
-                        <Link href={url } method='get' data={{ order: 'manager' }} data-sort="manager" className="sort_icon"></Link>
-                        <hr />
-                        <Link href={url} method='get' data={{ order: 'flag' }} data-sort="flag" className="sort_icon"></Link>
-                        <hr />
+                        {url == '/home' && (
+                            <Link href={url} method='get' data={{ order: 'manager' }} data-sort="manager" className="sort_icon"></Link>
+                        )}
+
+                        {url == '/home' && (
+                            <hr />
+                        )}
+
+                        {url == '/home' && (
+                            <Link href={url} method='get' data={{ order: 'flag' }} data-sort="flag" className="sort_icon"></Link>
+                        )}
+                        {url == '/home' && (
+                            <hr />
+                        )}
                         <Link href={url} method='get' data={{ order: 'created_at' }} data-sort="created_at" className="sort_icon"></Link>
                         <hr />
                         <Link href={url} method='get' data={{ order: 'deadline' }} data-sort="deadline" className="sort_icon"></Link>

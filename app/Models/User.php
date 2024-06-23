@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function task()
     {
-        return $this->hasMany(Task::class, 'user_tables');
+        return $this->belongsToMany(Task::class)->withPivot('notification_status');
     }
 
     public function role()

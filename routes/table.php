@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/home-get', [TableController::class, 'getForm'])->name('home.data');
 
     Route::get('/home/table', [TaskController::class, 'get'])->name('home.getTask');
+    Route::get('/home/tableNotion', [TaskController::class, 'notion'])->name('task.getTaskNotion');
     Route::post('/home/table', [TaskController::class, 'create'])->name('task.create');
     Route::patch('/home/table', [TaskController::class, 'update'])->name('task.update');
     Route::delete('/home/table', [TaskController::class, 'delete'])->name('task.delete');
@@ -22,4 +23,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/home/table/task', [TaskController::class, 'getOne'])->name('task.getTask');
     Route::post('/add-user', [TaskController::class, 'addUser'])->name('task.add-user');
     Route::post('/remove-user', [TaskController::class, 'removeUser'])->name('task.remove-user');
+
 });

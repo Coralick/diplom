@@ -110,7 +110,12 @@
 }
 
 .error_msg {
+    position: absolute;
+    max-width: 300px;
+    right: -310px;
+    top: 0;
     font-size: 14px;
+    text-align: left;
     color: rgb(220 38 38);
     font-family: "Comfortaa";
 }
@@ -288,6 +293,6 @@
     }
 
     .title {
-        font-size: 78px;
+        font-size: 32px;
     }
 }

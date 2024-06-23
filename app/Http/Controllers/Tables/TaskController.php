@@ -29,6 +29,13 @@ class TaskController extends Controller
             return $tableList;
         }
     }
+    public function notion(Request $request) {
+        $task = $request->user()->task->where('id', $request->get('id'))->first();
+        $notion = $task->pivot;
+        $notion['notification_status'] = 0;
+        $notion->save();
+        return redirect()->route('task.getTask', ['id' => $request->get('id')]);
+    }
 
     public function get(Request $request)
     {

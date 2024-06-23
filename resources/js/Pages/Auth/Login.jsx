@@ -26,7 +26,6 @@ export default function Login({ status, canResetPassword }) {
             setEye(prev => !prev)
             e.target.className = "eye_form"
         }
-        console.log(e.target.className)
     }
 
     useEffect(() => {
@@ -66,9 +65,9 @@ export default function Login({ status, canResetPassword }) {
                             placeholder='Почта'
                             onChange={(e) => setData('email', e.target.value)}
                         />
+                    <InputError message={errors.email} className="mt-2" />
                     </InputLayout>
 
-                    <InputError message={errors.email} className="mt-2" />
                 </div>
 
                 <div>

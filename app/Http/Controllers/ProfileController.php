@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Role;
+use App\Models\Table;
+use App\Models\TaskUser;
 use App\Models\User;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -20,29 +23,63 @@ class ProfileController extends Controller
     public function edit(Request $request): Response
     {
         $personal = User::all();
-        if($request->user()->role->id == 3){
-            foreach($personal as $user){
+        if ($request->user()->role->id == 3) {
+            foreach ($personal as $user) {
                 $user['role'] = $user->role->name;
             }
+            $taskList = false;
+            if ($request->user()->task()->exists()) {
+                $taskList = $request->user()->task;
+                foreach ($taskList as $item) {
+                    if ($item->pivot->exists && $item->pivot->notification_status != 0) {
+                        $item['notion'] = $item->pivot->notification_status;
+                    }
+                    $item['deadline_string'] = date('d-m-Y', strtotime($item['deadline']));
+                }
+            }
+
             return Inertia::render('Profile/Edit', [
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
                 'personal' => $personal,
+                'taskList' => $taskList,
             ]);
-        }
-        elseif($request->user()->role->id == 2){
-            foreach($personal as $user){
-                $user['role'] = $user->role->name;
+
+        } elseif ($request->user()->role->id == 2) {
+            $tableList = false;
+
+            if (Table::where('user_id', $request->user()->id)->exists()) {
+                $tableList = Table::where('user_id', $request->user()->id)->get();
+                foreach ($tableList as $item) {
+                    $item['manager'] = $item->user->name;
+                    $item['deadline_string'] = date('d-m-Y', strtotime($item['deadline']));
+                }
             }
-            return Inertia::render('Profile/Edit', [
+
+            return Inertia::render('Profile/EditManager', [
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
-                'personal' => $personal,
+                'tableList' => $tableList,
             ]);
-        }
-        else{
-            return Inertia::render('Profile/Edit', [
-                'personal' => $personal,
+
+        } else {
+
+            $userList = User::whereNot('id', 1)->get()->all();
+            
+
+            usort($userList, function ($a, $b) {
+                return strcmp($a->role->name, $b->role->name);
+            });
+
+            foreach ($userList as $user) {
+
+                $user['role'] = $user->role->name;
+            }
+
+            $roleList = Role::all();
+            return Inertia::render('Profile/EditAdmin', [
+                'personal' => $userList,
+                'roleList' => $roleList,
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
             ]);
@@ -77,12 +114,24 @@ class ProfileController extends Controller
         $user = $request->user();
 
         Auth::logout();
-        
+
         $user->delete();
 
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function editRole(Request $request)
+    {
+        $data = $request->validate([
+            'user_id' => 'string|required',
+            'role_id' => 'string|required'
+        ]);
+        $user = User::find($data['user_id']);
+        $user['role_id'] = $data['role_id'];
+        $user->save();
+        return redirect()->route('profile.edit');
     }
 }
