@@ -40,7 +40,7 @@ class TableController extends Controller
         }
         foreach ($tableList as $item) {
             $item['manager'] = $item->user->name;
-            $item['deadline'] = date('d-m-Y', strtotime($item['deadline']));
+            $item['deadline_string'] = date('d-m-Y', strtotime($item['deadline']));
         }
 
         return Inertia::render('Home', [
@@ -59,7 +59,7 @@ class TableController extends Controller
         $tableList = Table::all();
         foreach ($tableList as $item) {
             $item['manager'] = $item->user->name;
-            $item['deadline'] = date('d-m-Y', strtotime($item['deadline']));
+            $item['deadline_string'] = date('d-m-Y', strtotime($item['deadline']));
         }
         return Inertia::render('Home', [
             'tableList' => $tableList,

@@ -15,7 +15,9 @@ export default function Home({ auth, role = '', tableList, formData = false }) {
         deadline: formData ? formData.deadline : '',
         id: formData ? formData.id : '',
     });
+    const currentDay = new Date()
 
+    console.log(new Date(data.deadline))
     const submitEdit = (e) => {
         e.preventDefault();
         patch(route('home.update'),);
@@ -37,8 +39,6 @@ export default function Home({ auth, role = '', tableList, formData = false }) {
             deadline:  '',
         })
     };
-
-
 
     return (
         <AuthenticatedLayout
@@ -63,7 +63,7 @@ export default function Home({ auth, role = '', tableList, formData = false }) {
 
             {role <= 2 && (
 
-                <ModalForm trigger={formData} title={ formData ? 'Изменить проект' :  'Создание проекта'}>
+                <ModalForm back_url={'/home'} trigger={formData} title={ formData ? 'Изменить проект' :  'Создание проекта'}>
                     <form className='form' onSubmit={formData ? submitEdit : submitCreate}>
                         <InputLabel className={'modal_label'} for={'title'}>Название
                             <TextInput
@@ -88,6 +88,7 @@ export default function Home({ auth, role = '', tableList, formData = false }) {
                                 name="deadline"
                                 value={data.deadline}
                                 className={`modal_input`}
+                                min={new Date()}
                                 autoComplete="deadline"
                                 isFocused={true}
                                 placeholder='Введите сроки'

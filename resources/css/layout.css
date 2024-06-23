@@ -607,7 +607,7 @@ header {
 }
 
 .modal select,
-.modal input[type='date']{
+.modal input[type='date'] {
     cursor: pointer;
 }
 

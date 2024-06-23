@@ -22,17 +22,6 @@ function Table({ itemProp, role, type }) {
 
     const { updateModalStatus, modalStatus } = useContext(ModalContext)
 
-   
-
-    function deleteItem(id) {
-        setData(itemProp.id)
-        console.log(data)
-        // updateSetData(id)
-        if (id) {
-            const url = type + '.' + 'delete'
-            destroy(route(url))
-        }
-    }
 
     const taskRedirect = e => {
         id = e.target.dataset.id
@@ -43,6 +32,8 @@ function Table({ itemProp, role, type }) {
 
     const startDate = new Date(itemProp.created_at)
     const endDate = new Date(itemProp.deadline)
+    console.log(endDate)
+
     const currentDay = new Date()
 
     let deadlineDay = endDate - startDate
@@ -53,10 +44,10 @@ function Table({ itemProp, role, type }) {
 
     const difference = deadlineDay / nowDay
 
-    if (difference < 1) {
+    if (difference <= 1) {
         itemProp.tongle_color = 'red'
     }
-    else if (difference > 2 && difference < 4) {
+    else if (difference >= 1.16 && difference < 4) {
         itemProp.tongle_color = 'yellow'
     }
     else {
@@ -76,7 +67,7 @@ function Table({ itemProp, role, type }) {
             </div>
             <hr />
             <div className="date-container">
-                <p className="table_deadline">{itemProp.deadline}</p>
+                <p className="table_deadline">{itemProp.deadline_string}</p>
                 {role <= 2 ? (
                     <div className="manipulation_panel">
                         <Link href={route(type + '.' + 'delete')} data={{ 'id': itemProp.id }} method='delete'><div className='delete'></div></Link>

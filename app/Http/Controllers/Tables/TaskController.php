@@ -37,6 +37,7 @@ class TaskController extends Controller
         $table = Table::find($id);
 
         $taskList = $table->task;
+        $table['username'] = $table->user->name;
         $formData = false;
 
         $stages = Stage::all();
@@ -51,7 +52,7 @@ class TaskController extends Controller
         }
 
         foreach ($taskList as $item) {
-            $item['deadline'] = date('d-m-Y', strtotime($item['deadline']));
+            $item['deadline_string'] = date('d-m-Y', strtotime($item['deadline']));
         }
 
 

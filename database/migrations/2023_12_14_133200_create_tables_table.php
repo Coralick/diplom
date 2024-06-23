@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tables', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('content');
+            $table->text('content');
             $table->boolean('flag')->nullable();
             $table->dateTime('deadline')->nullable();
             $table->unsignedBigInteger('user_id');
