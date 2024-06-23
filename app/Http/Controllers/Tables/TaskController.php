@@ -162,7 +162,15 @@ class TaskController extends Controller
         ]);
 
         $task = Task::find($task_id['task_id']);
-        $task->user()->attach($id);
+        $task->user()->attach($id['id']);
+
+        $user = User::find($id['id']);
+
+        $notification = $user->task->find($task_id['task_id'])->pivot;
+        $notification['notification_status'] = 2;
+
+        $notification->save();
+
         return redirect('/home/table/task?id=' . $task_id['task_id']);
     }
 
@@ -176,6 +184,7 @@ class TaskController extends Controller
         ]);
         $task = Task::find($task_id['task_id']);
         $task->user()->detach($id);
+  
         return redirect('/home/table/task?id=' . $task_id['task_id']);
     }
 

@@ -45,9 +45,6 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Вход" />
 
             {status && <div className="mb-4 font-medium text-sm text-green-600">{status}</div>}
-            <div className="back_btn">
-                <Link href={route('register')} className="link" >Регистрация</Link>
-            </div>
             <form className='form' onSubmit={submit}>
                 <p className="title">Вход</p>
 
@@ -65,7 +62,7 @@ export default function Login({ status, canResetPassword }) {
                             placeholder='Почта'
                             onChange={(e) => setData('email', e.target.value)}
                         />
-                    <InputError message={errors.email} className="mt-2" />
+                        <InputError message={errors.email} className="mt-2" />
                     </InputLayout>
 
                 </div>
@@ -109,10 +106,14 @@ export default function Login({ status, canResetPassword }) {
                             Forgot your password?
                         </Link>
                     )} */}
+                <div className='form_bottom'>
 
-                <PrimaryButton disabled={processing}>
-                    Войти
-                </PrimaryButton>
+                    <PrimaryButton disabled={processing}>
+                        Войти
+                    </PrimaryButton>
+                    <Link href={route('register')} className="link" >Регистрация</Link>
+                    <Link className="reset_password" >Восстановление пароля</Link>
+                </div>
                 {/* </div> */}
             </form>
         </GuestLayout>

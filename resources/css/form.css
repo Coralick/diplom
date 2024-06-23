@@ -162,10 +162,40 @@
     right: 100px;
 }
 
+.form_bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.form_bottom .button {
+    width: 100%;
+}
+
 .link {
     font-family: 'COCOMAT';
     color: #ffffff;
-    font-size: 36px;
+    font-size: 24px;
+    transition: .4s ease;
+}
+
+.link:hover {
+    color: var(--white-color);
+    transition: .4s ease;
+}
+
+.form_bottom .reset_password {
+    font-family: 'Comfortaa';
+    font-size: 16px;
+    text-decoration: underline;
+    color: var(--white-color);
+    transition: .4s ease;
+}
+
+.form_bottom .reset_password:hover {
+    color: #d9dafd;
+    transition: .4s ease;
 }
 
 .back_btn:has(> .link)::after {

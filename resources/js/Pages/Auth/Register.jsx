@@ -57,7 +57,6 @@ export default function Register() {
         <GuestLayout>
             <Head title="Регистрация" />
             <div className="back_btn">
-                <Link href={route('login')} className="link" >Вход</Link>
             </div>
             <form className='form' onSubmit={submit}>
                 <p className="title">Регистрация</p>
@@ -75,7 +74,7 @@ export default function Register() {
                             onChange={(e) => setData('name', e.target.value)}
                             required
                         />
-                    <InputError message={errors.name} className="mt-2" />
+                        <InputError message={errors.name} className="mt-2" />
                     </InputLayout>
 
                 </div>
@@ -94,7 +93,7 @@ export default function Register() {
                             onChange={(e) => setData('email', e.target.value)}
                             required
                         />
-                    <InputError message={errors.email} className="mt-2" />
+                        <InputError message={errors.email} className="mt-2" />
                     </InputLayout>
 
                 </div>
@@ -113,7 +112,7 @@ export default function Register() {
                             required
                         />
                         <div className="eye_form close" onClick={changeEyes}></div>
-                    <InputError message={errors.password} className="mt-2" />
+                        <InputError message={errors.password} className="mt-2" />
                     </InputLayout>
 
                 </div>
@@ -133,14 +132,19 @@ export default function Register() {
                             required
                         />
                         <div className="eye_form close" onClick={changeEyes}></div>
-                    <InputError message={errors.password_confirmation} className="mt-2" />
+                        <InputError message={errors.password_confirmation} className="mt-2" />
                     </InputLayout>
 
                 </div>
+                <div className='form_bottom'>
 
-                <PrimaryButton disabled={processing}>
-                    Регистрация
-                </PrimaryButton>
+                    <PrimaryButton disabled={processing}>
+                        Регистрация
+                    </PrimaryButton>
+                    <Link href={route('login')} className="link" >Вход</Link>
+                    
+                </div>
+
             </form>
         </GuestLayout>
     );

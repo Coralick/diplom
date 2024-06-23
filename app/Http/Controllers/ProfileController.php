@@ -29,15 +29,17 @@ class ProfileController extends Controller
             }
             $taskList = false;
             if ($request->user()->task()->exists()) {
-                $taskList = $request->user()->task;
+                $taskList = $request->user()->task->all();
                 foreach ($taskList as $item) {
                     if ($item->pivot->exists && $item->pivot->notification_status != 0) {
                         $item['notion'] = $item->pivot->notification_status;
                     }
                     $item['deadline_string'] = date('d-m-Y', strtotime($item['deadline']));
                 }
+                usort($taskList, function ($a, $b) {
+                    return $a->notion < $b->notion;
+                });
             }
-
             return Inertia::render('Profile/Edit', [
                 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
                 'status' => session('status'),
@@ -66,7 +68,6 @@ class ProfileController extends Controller
 
             $userList = User::whereNot('id', 1)->get()->all();
             
-
             usort($userList, function ($a, $b) {
                 return strcmp($a->role->name, $b->role->name);
             });

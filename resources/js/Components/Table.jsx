@@ -63,7 +63,9 @@ function Table({ itemProp, role, type }) {
                     <h2 className="table_title">{itemProp.manager}</h2>
                 </div>
             }
-            <hr />
+            {type == 'home' &&
+                <hr />
+            }
             <div className="desc_content">
                 <p className="table_text">{itemProp.title}</p>
             </div>

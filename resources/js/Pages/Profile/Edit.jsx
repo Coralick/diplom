@@ -8,7 +8,7 @@ import Table from '@/Components/Table';
 export default function Edit({ auth, mustVerifyEmail, status, taskList = false }) {
     return (
         <ProfileLayout>
-            <Head title="Profile" />
+            <Head title="Профиль" />
 
             <div className="profile-container">
                 <div className="task_list-container">

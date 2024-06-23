@@ -1,7 +1,7 @@
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import { Head, router, useForm } from '@inertiajs/react';
+import { Head, router } from '@inertiajs/react';
 import ProfileLayout from '@/Layouts/ProfileLayout';
 import { useState } from 'react';
 
@@ -15,10 +15,11 @@ export default function EditAdmin({ auth, mustVerifyEmail, status, personal, rol
         router.post(route('user.edit-role'), { user_id: data, role_id: e.target.value })
         e.target.value=0
     }
+    console.log()
 
     return (
         <ProfileLayout>
-            <Head title="Profile" />
+            <Head title="Профиль" />
 
             <div className="profile-container">
                 <div className="task_list-container">
