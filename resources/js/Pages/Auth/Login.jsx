@@ -112,7 +112,7 @@ export default function Login({ status, canResetPassword }) {
                         Войти
                     </PrimaryButton>
                     <Link href={route('register')} className="link" >Регистрация</Link>
-                    <Link className="reset_password" >Восстановление пароля</Link>
+                    {/* <Link className="reset_password" >Восстановление пароля</Link> */}
                 </div>
                 {/* </div> */}
             </form>
