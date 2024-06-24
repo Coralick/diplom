@@ -109,15 +109,19 @@
     color: #749EF0;
 }
 
-.error_msg {
+.text_input .error_msg {
     position: absolute;
     max-width: 300px;
     right: -310px;
     top: 0;
-    font-size: 14px;
     text-align: left;
-    color: rgb(220 38 38);
+}
+
+.error_msg {
+    font-size: 14px;
     font-family: "Comfortaa";
+    color: rgb(220 38 38);
+
 }
 
 .msg {

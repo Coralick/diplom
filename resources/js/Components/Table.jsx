@@ -55,7 +55,7 @@ function Table({ itemProp, role, type }) {
     }
 
     return (
-        <div className={`table_card ${itemProp.notion && 'active'}`} >
+        <div className={`table_card ${itemProp.notion ? 'active' : ''}`} >
             <div className={"timing_tab " + itemProp.tongle_color}></div>
             {type == 'home' &&
                 <div className="author-container">

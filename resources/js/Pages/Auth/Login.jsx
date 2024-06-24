@@ -82,8 +82,8 @@ export default function Login({ status, canResetPassword }) {
                             onChange={(e) => setData('password', e.target.value)}
                         />
                         <div className="eye_form close" onClick={changeEyes}></div>
+                        <InputError message={errors.password} className="error_msg" />
                     </InputLayout>
-                    <InputError message={errors.password} className="error_msg" />
                 </div>
 
                 {/* <div className="block mt-4">

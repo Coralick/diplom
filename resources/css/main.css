@@ -36,6 +36,10 @@
     transition: .4s ease;
 }
 
+.task_container .table_card{
+    padding-top: 50px;
+}
+
 @keyframes fadein {
     0% {
         display: none;

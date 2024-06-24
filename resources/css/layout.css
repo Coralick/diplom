@@ -474,6 +474,9 @@ header {
     height: unset;
 }
 
+.file_system-item svg{
+    width: 20px;
+}
 
 /* modal styles */
 .modal-overlay {
